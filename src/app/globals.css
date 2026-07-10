@@ -372,22 +372,24 @@ a {
   transform-box: view-box;
   transform-origin: 400px 200px;
   animation: number-ring-spin 70s linear infinite;
+  will-change: transform;
 }
 
-.number-ring-group text {
+.number-ring-group .pi-ring-text {
   fill: rgba(141, 255, 194, 0.5);
   font-family: var(--font-geist-mono), "SF Mono", "Menlo", monospace;
   font-size: 10px;
   font-weight: 300;
-  letter-spacing: 2.4px;
-  filter: drop-shadow(0 0 8px rgba(50, 240, 140, 0.22));
+  letter-spacing: 9px;
+  opacity: 0.58;
 }
 
-.pi-digit {
-  opacity: 0.64;
-}
-
-.pi-digit-odd {
+.number-ring-group .pi-ring-spark {
+  fill: rgba(196, 255, 221, 0.96);
+  font-family: var(--font-geist-mono), "SF Mono", "Menlo", monospace;
+  font-size: 10px;
+  font-weight: 300;
+  opacity: 0;
   animation: pi-odd-breathe 7.4s ease-in-out infinite;
 }
 
@@ -411,13 +413,8 @@ a {
   animation-direction: reverse;
 }
 
-.number-ring-mid-b {
-  animation-duration: 92s;
-}
-
 .number-ring-outer-a {
-  animation-duration: 126s;
-  animation-direction: reverse;
+  animation-duration: 104s;
 }
 
 .number-ring-outer-a text,
@@ -995,22 +992,20 @@ a {
 
 @keyframes pi-odd-breathe {
   0%,
-  74%,
+  78%,
   100% {
-    opacity: 0.48;
-    fill: rgba(141, 255, 194, 0.5);
+    opacity: 0;
     filter: none;
   }
 
-  82% {
+  85% {
     opacity: 0.95;
     fill: rgba(196, 255, 221, 0.96);
     filter: drop-shadow(0 0 7px rgba(50, 240, 140, 0.5));
   }
 
-  90% {
-    opacity: 0.56;
-    fill: rgba(141, 255, 194, 0.58);
+  92% {
+    opacity: 0;
     filter: none;
   }
 }
@@ -1214,9 +1209,13 @@ a {
     opacity: 0.56;
   }
 
-  .number-ring-group text {
+  .number-ring-group .pi-ring-text {
     font-size: 8px;
-    letter-spacing: 1.2px;
+    letter-spacing: 6px;
+  }
+
+  .number-ring-group .pi-ring-spark {
+    font-size: 8px;
   }
 
   .number-ring-outer-b {

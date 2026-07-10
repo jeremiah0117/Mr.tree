@@ -12,31 +12,40 @@ import {
 
 const numberRings = [
   {
-    r: 76,
+    r: 82,
     className: "number-ring-inner",
     offset: 0,
+    count: 36,
+    startOffset: 4,
+    sparks: [8, 21, 35, 49, 62, 76, 90],
   },
   {
-    r: 116,
+    r: 132,
     className: "number-ring-mid-a",
     offset: 37,
+    count: 52,
+    startOffset: 16,
+    sparks: [4, 18, 32, 46, 60, 74, 88],
   },
   {
-    r: 158,
-    className: "number-ring-mid-b",
-    offset: 83,
-  },
-  {
-    r: 202,
+    r: 188,
     className: "number-ring-outer-a",
-    offset: 141,
+    offset: 83,
+    count: 68,
+    startOffset: 29,
+    sparks: [10, 24, 38, 52, 66, 80, 94],
   },
   {
-    r: 248,
+    r: 246,
     className: "number-ring-outer-b",
-    offset: 211,
+    offset: 141,
+    count: 86,
+    startOffset: 41,
+    sparks: [2, 16, 30, 44, 58, 72, 86],
   },
 ];
+
+const oddSparkDigits = ["1", "3", "5", "7", "9"];
 
 const piDigits =
   "3141592653589793238462643383279502884197169399375105820974944592307816406" +
@@ -114,22 +123,31 @@ function NumberRings() {
       {numberRings.map((ring, index) => (
         <g className={`number-ring-group ${ring.className}`} key={ring.className}>
           <use href={`#number-path-${ring.className}`} className="number-ring-guide" />
-          <text>
-            <textPath href={`#number-path-${ring.className}`} startOffset={`${index * 11}%`}>
-              {piRingDigits(ring.offset, 260).split("").map((digit, digitIndex) => {
-                const isOdd = Number(digit) % 2 === 1;
-                return (
-                  <tspan
-                    className={isOdd ? "pi-digit pi-digit-odd" : "pi-digit"}
-                    key={`${ring.className}-${digitIndex}`}
-                    style={isOdd ? { animationDelay: `${((digitIndex % 17) * 0.31 + index * 0.58).toFixed(2)}s` } : undefined}
-                  >
-                    {digit}
-                  </tspan>
-                );
-              })}
+          <text className="pi-ring-text">
+            <textPath
+              href={`#number-path-${ring.className}`}
+              startOffset={`${ring.startOffset}%`}
+            >
+              {piRingDigits(ring.offset, ring.count)}
             </textPath>
           </text>
+          {ring.sparks.map((sparkOffset, sparkIndex) => (
+            <text
+              className="pi-ring-spark"
+              key={`${ring.className}-spark-${sparkIndex}`}
+              style={{
+                animationDelay: `${index * 0.83 + sparkIndex * 1.07}s`,
+                animationDuration: `${8.6 + ((index * 7 + sparkIndex) % 5) * 0.7}s`,
+              }}
+            >
+              <textPath
+                href={`#number-path-${ring.className}`}
+                startOffset={`${sparkOffset}%`}
+              >
+                {oddSparkDigits[(index * 7 + sparkIndex) % oddSparkDigits.length]}
+              </textPath>
+            </text>
+          ))}
         </g>
       ))}
     </svg>
