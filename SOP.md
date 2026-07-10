@@ -163,7 +163,7 @@ git push origin main             # 此时返回 "Everything up-to-date"
 | v1.0 | 2026-07-10 10:10 | **多页数字花园系统**：路由 about/garden/garden[slug]/lab/links + RSS(feed.xml) + sitemap.ts + robots.ts + JSON-LD + lib/site.ts + lib/content.ts（自写 MD 解析）+ DeerMascot（会眨眼像素小鹿）+ π 数字环 NumberRings | 多文件（app/components/lib 全量） | `baf86a6` | 已入库+已推送 | WorkBuddy agent |
 | v1.1 | 2026-07-10 11:12 | 首页数字环动效优化 | page.tsx (NumberRings) | `d6e5c7f` | 已入库+已推送（远程） | WorkBuddy agent（另一实例） |
 | v1.2 | 2026-07-10 11:29 | 保证数字环字符间隔修复 | page.tsx | `b28b229` | 已入库+已推送（远程） | WorkBuddy agent（另一实例） |
-| v1.3 | 2026-07-10 | **沉淀本 SOP 文档**（开发→部署全链路 SOP + 版本修改记录表），供未来 agent 免上下文接手 | SOP.md（新增） | （见下方提交） | 待推送 | WorkBuddy agent |
+| v1.3 | 2026-07-10 11:40 | **沉淀本 SOP 文档**（开发→部署全链路 SOP + 版本修改记录表），供未来 agent 免上下文接手 | SOP.md（新增） | `c3e3ec0` | 已入库+已推送 | WorkBuddy agent |
 
 > 注：v1.1 / v1.2 由另一台机器提交并推送，造成与本地平行历史；本机通过 §4.4 的
 > `reset --soft origin/main` 对齐，未产生重复提交。
