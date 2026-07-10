@@ -62,7 +62,7 @@ function circlePathD(r: number): string {
 
 function piRingDigits(offset: number, count: number): string {
   const source = piDigits.repeat(Math.ceil((offset + count) / piDigits.length) + 1);
-  return source.slice(offset, offset + count);
+  return source.slice(offset, offset + count).split("").join("\u00a0");
 }
 
 function DeerMascot() {
@@ -123,7 +123,7 @@ function NumberRings() {
       {numberRings.map((ring, index) => (
         <g className={`number-ring-group ${ring.className}`} key={ring.className}>
           <use href={`#number-path-${ring.className}`} className="number-ring-guide" />
-          <text className="pi-ring-text">
+          <text className="pi-ring-text" style={{ letterSpacing: 0 }}>
             <textPath
               href={`#number-path-${ring.className}`}
               startOffset={`${ring.startOffset}%`}
