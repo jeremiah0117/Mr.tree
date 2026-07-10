@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { siteInfo, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,9 +14,43 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "树先生宇宙 | 数字花园与个人 IP 系统",
-  description:
-    "树先生宇宙是一个面向 GEO、搜索与社媒传播的个人知识现场，沉淀科技洞见、商业判断和自然疗愈的长期资产。",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteInfo.title,
+    template: `%s | ${siteInfo.name}`,
+  },
+  description: siteInfo.description,
+  applicationName: siteInfo.name,
+  authors: [{ name: siteInfo.creator }],
+  creator: siteInfo.creator,
+  publisher: siteInfo.creator,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: siteInfo.locale,
+    url: siteUrl,
+    siteName: siteInfo.name,
+    title: siteInfo.title,
+    description: siteInfo.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteInfo.title,
+    description: siteInfo.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({

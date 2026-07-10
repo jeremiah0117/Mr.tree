@@ -1,125 +1,187 @@
-const navItems = ["宇宙入口", "数字花园", "实验室", "连接矩阵"];
+import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import SiteChrome from "@/components/SiteChrome";
+import StarField from "@/components/StarField";
+import {
+  signals,
+  siteInfo,
+  socialLinks,
+  siteUrl,
+  universePillars,
+} from "@/lib/site";
 
-const codeLines = [
-  "          const forest = seed('idea') + build('trust') + ship('signal')",
-  "      <root> geo.map(intent).feed(search).sync(social).grow() </root>",
-  "   01 10 01   { ai: 'tools', biz: 'cycles', nature: 'restore' }   10 01",
-  "      while (curiosity) { publish(note); connect(people); compound(value) }",
-  "          node: thought -> essay -> video -> newsletter -> product",
-];
-
-const bubbles = [
-  { label: "{GEO}", className: "bubble-one" },
-  { label: "root.grow()", className: "bubble-two" },
-  { label: "<IP />", className: "bubble-three" },
-  { label: "01 feed", className: "bubble-four" },
-  { label: "link.social()", className: "bubble-five" },
-  { label: "calm++", className: "bubble-six" },
-];
-
-const pillars = [
+const numberRings = [
   {
-    title: "内容资产层",
-    copy: "把科技洞见、商业判断和长期笔记沉淀为可被搜索、引用和再分发的知识节点。",
+    r: 76,
+    className: "number-ring-inner",
+    offset: 0,
   },
   {
-    title: "社媒连接层",
-    copy: "连接 GitHub、X、YouTube、LinkedIn、公众号、视频号、小红书、抖音等主流入口。",
+    r: 116,
+    className: "number-ring-mid-a",
+    offset: 37,
   },
   {
-    title: "商业转化层",
-    copy: "为咨询、课程、研究报告、社群和数字产品预留可信的商业路径。",
+    r: 158,
+    className: "number-ring-mid-b",
+    offset: 83,
+  },
+  {
+    r: 202,
+    className: "number-ring-outer-a",
+    offset: 141,
+  },
+  {
+    r: 248,
+    className: "number-ring-outer-b",
+    offset: 211,
   },
 ];
 
-const signals = ["AI 原生", "GEO-ready", "长期主义", "自然疗愈"];
+const piDigits =
+  "3141592653589793238462643383279502884197169399375105820974944592307816406" +
+  "2862089986280348253421170679821480865132823066470938446095505822317253594" +
+  "0812848111745028410270193852110555964462294895493038196442881097566593344" +
+  "6128475648233786783165271201909145648566923460348610454326648213393607260" +
+  "2491412737245870066063155881748815209209628292540917153643678925903600113" +
+  "3053054882046652138414695194151160943305727036575959195309218611738193261" +
+  "1793105118548074462379962749567351885752724891227938183011949129833673362";
 
-const socialGroups = [
-  "GitHub",
-  "X",
-  "YouTube",
-  "LinkedIn",
-  "公众号",
-  "视频号",
-  "小红书",
-  "抖音",
-];
+function circlePathD(r: number): string {
+  return `M 400 200 m -${r} 0 a ${r} ${r} 0 1 1 ${r * 2} 0 a ${r} ${r} 0 1 1 -${r * 2} 0`;
+}
 
-function PixelTree() {
+function piRingDigits(offset: number, count: number): string {
+  const source = piDigits.repeat(Math.ceil((offset + count) / piDigits.length) + 1);
+  return source.slice(offset, offset + count);
+}
+
+function DeerMascot() {
   return (
-    <div className="pixel-tree-wrap" aria-label="像素风绿色树先生">
+    <div className="deer-mascot-wrap" aria-label="会眨眼的小鹿">
       <svg
-        className="pixel-tree"
+        className="deer-mascot"
         viewBox="0 0 128 128"
         role="img"
         aria-hidden="true"
         shapeRendering="crispEdges"
       >
-        <rect x="56" y="80" width="16" height="32" fill="#24483b" />
-        <rect x="48" y="104" width="32" height="8" fill="#1a362d" />
-        <rect x="40" y="32" width="48" height="16" fill="#32f08c" />
-        <rect x="32" y="48" width="64" height="24" fill="#27d982" />
-        <rect x="24" y="64" width="80" height="24" fill="#1fbf73" />
-        <rect x="40" y="80" width="48" height="16" fill="#15985f" />
-        <rect x="48" y="24" width="32" height="8" fill="#7dffb2" />
-        <rect x="32" y="40" width="16" height="8" fill="#82ffc4" />
-        <rect x="80" y="56" width="16" height="8" fill="#60e8ff" />
-        <rect x="48" y="60" width="8" height="8" fill="#05100a" />
-        <rect x="72" y="60" width="8" height="8" fill="#05100a" />
-        <rect x="56" y="76" width="16" height="4" fill="#0a4f36" />
-        <rect x="24" y="72" width="8" height="8" fill="#5cff9d" />
-        <rect x="96" y="72" width="8" height="8" fill="#5cff9d" />
+        <rect x="28" y="20" width="8" height="16" fill="#5cff9d" />
+        <rect x="36" y="28" width="8" height="16" fill="#27d982" />
+        <rect x="92" y="20" width="8" height="16" fill="#5cff9d" />
+        <rect x="84" y="28" width="8" height="16" fill="#27d982" />
+        <rect x="20" y="16" width="8" height="8" fill="#60e8ff" />
+        <rect x="20" y="24" width="16" height="8" fill="#60e8ff" />
+        <rect x="100" y="16" width="8" height="8" fill="#60e8ff" />
+        <rect x="92" y="24" width="16" height="8" fill="#60e8ff" />
+        <rect x="44" y="28" width="40" height="8" fill="#9affc7" />
+        <rect x="36" y="36" width="56" height="16" fill="#5cff9d" />
+        <rect x="28" y="52" width="72" height="24" fill="#32f08c" />
+        <rect x="32" y="76" width="64" height="16" fill="#1fc878" />
+        <rect x="40" y="92" width="48" height="12" fill="#129b60" />
+        <rect x="48" y="104" width="32" height="8" fill="#0f6f49" />
+        <rect x="44" y="52" width="8" height="8" fill="#82ffc4" />
+        <rect x="76" y="52" width="8" height="8" fill="#82ffc4" />
+        <rect className="deer-eye deer-eye-left" x="48" y="64" width="8" height="12" fill="#020604" />
+        <rect className="deer-eye deer-eye-right" x="72" y="64" width="8" height="12" fill="#020604" />
+        <rect className="deer-eye-shine deer-eye-left" x="52" y="64" width="4" height="4" fill="#d8fff0" />
+        <rect className="deer-eye-shine deer-eye-right" x="76" y="64" width="4" height="4" fill="#d8fff0" />
+        <rect x="60" y="76" width="8" height="8" fill="#063b27" />
+        <rect x="56" y="84" width="16" height="4" fill="#031007" />
+        <rect x="32" y="72" width="8" height="8" fill="#7dffb2" />
+        <rect x="88" y="72" width="8" height="8" fill="#7dffb2" />
+        <rect x="52" y="108" width="8" height="8" fill="#24483b" />
+        <rect x="68" y="108" width="8" height="8" fill="#24483b" />
       </svg>
     </div>
   );
 }
 
-function CodeWaveHero() {
+function NumberRings() {
+  return (
+    <svg
+      className="number-ring-svg"
+      viewBox="0 0 800 400"
+      preserveAspectRatio="xMidYMid meet"
+      role="img"
+      aria-hidden="true"
+    >
+      <defs>
+        {numberRings.map((ring) => (
+          <path id={`number-path-${ring.className}`} d={circlePathD(ring.r)} key={ring.className} />
+        ))}
+      </defs>
+      {numberRings.map((ring, index) => (
+        <g className={`number-ring-group ${ring.className}`} key={ring.className}>
+          <use href={`#number-path-${ring.className}`} className="number-ring-guide" />
+          <text>
+            <textPath href={`#number-path-${ring.className}`} startOffset={`${index * 11}%`}>
+              {piRingDigits(ring.offset, 260).split("").map((digit, digitIndex) => {
+                const isOdd = Number(digit) % 2 === 1;
+                return (
+                  <tspan
+                    className={isOdd ? "pi-digit pi-digit-odd" : "pi-digit"}
+                    key={`${ring.className}-${digitIndex}`}
+                    style={isOdd ? { animationDelay: `${((digitIndex % 17) * 0.31 + index * 0.58).toFixed(2)}s` } : undefined}
+                  >
+                    {digit}
+                  </tspan>
+                );
+              })}
+            </textPath>
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function CodeRingsHero() {
   return (
     <div className="hero-visual" aria-hidden="true">
-      <div className="code-wave code-wave-back">
-        <pre>{codeLines.join("\n")}</pre>
+      <div className="music-ripple-field">
+        <span className="ripple-ring ripple-ring-a" />
+        <span className="ripple-ring ripple-ring-b" />
+        <span className="ripple-ring ripple-ring-c" />
+        <span className="ripple-ring ripple-ring-d" />
       </div>
-      <div className="code-wave code-wave-front">
-        <pre>{[...codeLines].reverse().join("\n")}</pre>
-      </div>
-      <div className="code-ring code-ring-large" />
-      <div className="code-ring code-ring-small" />
-      {bubbles.map((bubble) => (
-        <span
-          className={`code-bubble ${bubble.className}`}
-          key={bubble.label}
-        >
-          {bubble.label}
-        </span>
-      ))}
-      <PixelTree />
+      <NumberRings />
+      <DeerMascot />
+      <StarField />
     </div>
   );
 }
 
 export default function Home() {
-  return (
-    <main className="site-shell">
-      <nav className="top-nav" aria-label="主导航">
-        <a className="brand-mark" href="#top" aria-label="树先生宇宙首页">
-          <span className="brand-glyph">木</span>
-          <span>树先生宇宙</span>
-        </a>
-        <div className="nav-links">
-          {navItems.map((item) => (
-            <a href={`#${item}`} key={item}>
-              {item}
-            </a>
-          ))}
-        </div>
-        <a className="nav-action" href="#连接矩阵">
-          连接我
-        </a>
-      </nav>
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: siteInfo.name,
+      url: siteUrl,
+      description: siteInfo.description,
+      inLanguage: "zh-CN",
+      publisher: {
+        "@type": "Person",
+        name: siteInfo.creator,
+        sameAs: socialLinks.map((link) => link.href),
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: siteInfo.creator,
+      url: siteUrl,
+      description: "一个连接 AI、商业洞见、数字花园与自然疗愈感的个人 IP 系统。",
+      sameAs: socialLinks.map((link) => link.href),
+    },
+  ];
 
+  return (
+    <SiteChrome>
+      <JsonLd data={jsonLd} />
       <section className="hero-section" id="top">
-        <CodeWaveHero />
+        <CodeRingsHero />
         <div className="hero-copy">
           <p className="eyebrow">个人 IP · 数字花园 · AI 时代长期主义</p>
           <h1>把思想种成一片宇宙</h1>
@@ -128,12 +190,12 @@ export default function Home() {
             科技洞见、商业判断与大自然的治愈感，在这里沉淀为长期资产。
           </p>
           <div className="hero-actions">
-            <a className="primary-button" href="#数字花园">
+            <Link className="primary-button" href="/garden">
               进入数字花园
-            </a>
-            <a className="secondary-button" href="#实验室">
+            </Link>
+            <Link className="secondary-button" href="/lab">
               查看实验室
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -153,12 +215,12 @@ export default function Home() {
           </p>
         </div>
         <div className="pillar-grid">
-          {pillars.map((pillar, index) => (
-            <article className="pillar-card" key={pillar.title}>
+          {universePillars.map((pillar, index) => (
+            <Link className="pillar-card" href={pillar.href} key={pillar.title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{pillar.title}</h3>
               <p>{pillar.copy}</p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -202,13 +264,13 @@ export default function Home() {
           <p>先建立稳定的链接占位，后续替换为真实账号、订阅入口和平台专属 landing page。</p>
         </div>
         <div className="social-grid">
-          {socialGroups.map((platform) => (
-            <a href="#top" key={platform}>
-              {platform}
+          {socialLinks.map((link) => (
+            <a href={link.href} key={link.platform} target="_blank" rel="noreferrer">
+              {link.platform}
             </a>
           ))}
         </div>
       </section>
-    </main>
+    </SiteChrome>
   );
 }

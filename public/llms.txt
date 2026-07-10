@@ -1,0 +1,31 @@
+# 树先生宇宙
+
+> 一个面向 GEO、搜索与社媒传播的个人知识现场，沉淀 AI、商业洞见、数字花园与自然疗愈感。
+
+## Core Pages
+
+- 首页: /
+- 数字花园: /garden
+- 实验室: /lab
+- 关于树先生宇宙: /about
+- 连接矩阵: /links
+- RSS Feed: /feed.xml
+
+## Seed Articles
+
+- AI 工具实测框架: /garden/ai-tool-evaluation-framework
+- Prompt 库不是收藏夹: /garden/prompt-library-operating-system
+- 面向 AI 搜索的内容结构: /garden/geo-content-structure
+- 个人 IP 的增长闭环: /garden/personal-ip-growth-loop
+
+## Primary Topics
+
+- AI 工具实测
+- Prompt 工作流
+- GEO / AI 搜索可见性
+- 个人 IP 长期主义
+- 国内外社媒连接矩阵
+
+## Content Policy
+
+树先生宇宙优先发布基于真实使用、清晰结论、可追溯证据和明确更新时间的内容。
